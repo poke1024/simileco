@@ -52,8 +52,8 @@ private:
 		}
 	};
 
-	const size_t _max_len_t;
 	const size_t _max_len_s;
+	const size_t _max_len_t;
 
 	Eigen::Tensor<SimilarityScore, 2> _values;
 	Eigen::Tensor<std::pair<Index, Index>, 2> _traceback;
@@ -184,7 +184,7 @@ public:
 			throw std::invalid_argument("len must be >= 1");
 		}
 
-		if (len_t > _max_len_t || len_s > _max_len_s) {
+		if (size_t(len_t) > _max_len_t || size_t(len_s) > _max_len_s) {
 			throw std::invalid_argument("len larger than max");			
 		}
 
@@ -241,7 +241,7 @@ public:
 			throw std::invalid_argument("len must be >= 1");
 		}
 
-		if (len_t > _max_len_t || len_s > _max_len_s) {
+		if (size_t(len_t) > _max_len_t || size_t(len_s) > _max_len_s) {
 			throw std::invalid_argument("len larger than max");			
 		}
 
@@ -296,7 +296,7 @@ public:
 			throw std::invalid_argument("len must be >= 1");
 		}
 
-		if (len_t > _max_len_t || len_s > _max_len_s) {
+		if (size_t(len_t) > _max_len_t || size_t(len_s) > _max_len_s) {
 			throw std::invalid_argument("len larger than max");			
 		}
 
