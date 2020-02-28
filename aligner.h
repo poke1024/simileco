@@ -131,6 +131,10 @@ public:
 		return _best_match;
 	}
 
+	inline std::vector<Index> &mutable_match() {
+		return _best_match;
+	}
+
 #if !defined(ALIGNER_SLIM)
 	std::string pretty_printed(
 		const std::string &s,
