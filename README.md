@@ -14,7 +14,7 @@ Currently supports:
 * Smith-Waterman
 * Waterman-Smith-Beyer
 
-You might also be interested in alignment-tools, a suite of tools for analyzing and visualizing
+You might also be interested in <a href="https://github.com/poke1024/alignment-tools">alignment-tools</a>, a suite of tools for analyzing and visualizing
 alignment algorithms using Python and Mathematica.
 
 ## Usage
