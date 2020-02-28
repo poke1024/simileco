@@ -9,8 +9,7 @@
 
 template<
 	typename Index=int16_t,
-	typename SimilarityScore=float,
-	bool Reverse=false>
+	typename SimilarityScore=float>
 
 class Aligner {
 private:
@@ -92,12 +91,8 @@ private:
 		Index u = best_u;
 		Index v = best_v;
 		while (u >= 0 && v >= 0 && values(u, v) > zero_similarity) {
-			_best_match[v] = Reverse ? len_s - 1 - u : u;
+			_best_match[v] = u;
 			std::tie(u, v) = traceback(u, v);
-		}
-
-		if (Reverse) {
-			std::reverse(_best_match.begin(), _best_match.end());
 		}
 	}
 
@@ -113,12 +108,8 @@ private:
 		_best_score = _values(u, v);
 
 		while (u >= 0 && v >= 0) {
-			_best_match[v] = Reverse ? len_s - 1 - u : u;
+			_best_match[v] = u;
 			std::tie(u, v) = _traceback(u, v);
-		}
-
-		if (Reverse) {
-			std::reverse(_best_match.begin(), _best_match.end());
 		}
 	}
 
@@ -216,8 +207,7 @@ public:
 
 				const SimilarityScore s0 =
 					nwvalues(u - 1, v - 1);
-				const SimilarityScore s1 = Reverse ?
-					similarity(len_s - 1 - u, len_t - 1 - v) :
+				const SimilarityScore s1 =
 					similarity(u, v);
 				Fold best(
 					s0 + s1,
@@ -267,8 +257,7 @@ public:
 				{
 					const SimilarityScore s0 =
 						(v > 0 && u > 0) ? values(u - 1, v - 1) : 0;
-					const SimilarityScore s1 = Reverse ?
-						similarity(len_s - 1 - u, len_t - 1 - v) :
+					const SimilarityScore s1 =
 						similarity(u, v);
 					best.update(
 						s0 + s1,
@@ -323,8 +312,7 @@ public:
 				{
 					const SimilarityScore s0 =
 						(v > 0 && u > 0) ? values(u - 1, v - 1) : 0;
-					const SimilarityScore s1 = Reverse ?
-						similarity(len_s - 1 - u, len_t - 1 - v) :
+					const SimilarityScore s1 =
 						similarity(u, v);
 					best.update(
 						s0 + s1,
